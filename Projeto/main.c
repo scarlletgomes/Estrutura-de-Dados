@@ -187,24 +187,24 @@ int main(void) {
 	scanf("%d", &resp);
 	switch (resp){
 		case 1:
-			if(strcmp(cliente[i].uf,AC){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"AC")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 2:
-			if(strcmp(cliente[i].uf,AL){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"AL")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 3:
-			if(strcmp(cliente[i].uf,AP){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"AP"))==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
@@ -212,192 +212,192 @@ int main(void) {
 				}
 	
 		case 4:
-			if(strcmp(cliente[i].uf,AM){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"AM")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 5:
-			if(strcmp(cliente[i].uf,BA){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"BA")==0){
+				printf("%s",cliente[i].nome\n");
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 6:
-			if(strcmp(cliente[i].uf,CE){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"CE")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 7:
-			if(strcmp(cliente[i].uf,DF){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"DF"))==0{
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 8:
-			if(strcmp(cliente[i].uf,ES){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"ES"))==0{
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 9:
-			if(strcmp(cliente[i].uf,GO){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"GO")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 10:
-			if(strcmp(cliente[i].uf,MA){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"MA")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 11:
-			if(strcmp(cliente[i].uf,MT){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"MT")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 12:
-			if(strcmp(cliente[i].uf,MS){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"MS")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 13:
-			if(strcmp(cliente[i].uf,MG){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"MG")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 14:
-			if(strcmp(cliente[i].uf,PA){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"PA")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 15:
-			if(strcmp(cliente[i].uf,PB){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"PB")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 16:
-			if(strcmp(cliente[i].uf,PR){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"PR")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 17:
-			if(strcmp(cliente[i].uf,PE){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"PE")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 18:
-			if(strcmp(cliente[i].uf,PI){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"PI")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 19:
-			if(strcmp(cliente[i].uf,RJ){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"RJ")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 20:
-			if(strcmp(cliente[i].uf,RN){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"RN")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 21:
-			if(strcmp(cliente[i].uf,RS){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"RS")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 22:
-			if(strcmp(cliente[i].uf,RO){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"RO")==0){
+				printf("%s"cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 23:
-			if(strcmp(cliente[i].uf,RR){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"RR")==0){
+				printf("%s"cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 24:
-			if(strcmp(cliente[i].uf,SC){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"SC")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 25:
-			if(strcmp(cliente[i].uf,SP){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"SP")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 26:
-			if(strcmp(cliente[i].uf,SE){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"SE")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
 				break;
 				}
 		case 27:
-			if(strcmp(cliente[i].uf,TO){
-				printf("cliente[i].nome");
+			if(strcmp(cliente[i].uf,"TO")==0){
+				printf("%s",cliente[i].nome);
 				break;
 			}else{
 				printf("Nao ha clientes nessa UF");
