@@ -28,14 +28,17 @@ typedef struct {
 	char tipo[10];	
 } Produto;
 
-typedef struct {
-	char nome[50];
+struct Venda {
+	char nomeCliente[50];
 	int dia;
 	int mes;
 	int ano;
 	float imposto;
 	char nomeVendedor[20];
-} Venda;
+	Produto produtos[10];
+	int numProdutos;
+	float valorTotal;
+};
 
 #endif
 // void cadastroFunc(){
