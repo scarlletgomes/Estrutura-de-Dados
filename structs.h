@@ -1,47 +1,58 @@
-#include <string.h>
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
-struct cadastro_prestador{
+#include <string.h>
+
+typedef struct  {
 	char nome[50];
 	char email[50];
 	int telefone;
 	char endereco[100];
-	char uf[2];
-} Prestador[50];
+	char uf[3];
+	int indice;
+} Funcionario;
 
-struct cadastro_cliente{
+typedef struct {
 	char nome[50];
 	int idade;
 	char email[50];
 	int telefone;
 	char endereco[50];
 	char uf[3];
-} Cliente[50];
+} Cliente;
 
-struct cadastro_livro{
+typedef struct {
+	int id;
 	char titulo[50];
-	char editora[50];
-	char genero[50];
-	int classificacao;
-	char autor[50];
-	
-	
-} Livro[50];
+	float preco;
+	char tipo[10];	
+} Produto;
+
 typedef struct {
 	char nome[50];
-	char tipo[50]; 
 	int dia;
 	int mes;
 	int ano;
 	float imposto;
+	char nomeVendedor[20];
 } Venda;
 
-typedef struct {
-	char uf[2];
-	float imposto;
-    float valorBase;
-    float valorVenda;
-} Produto; 
-
 #endif
+// void cadastroFunc(){
+// 	printf("Digite o nome do funcionário: ");
+// 	scanf(" %[^\n]s",&funcionario[indice].nome);
+
+// 	printf("Digite o email do funcionário: ");
+// 	scanf(" %s",&funcionario[indice].email);
+
+// 	printf("Digite o telefone do funcionário: ");
+// 	scanf("%d",&funcionario[indice].telefone);
+
+// 	printf("Digite o endereço do funcionário: ");
+// 	scanf(" %[^\n]s",&funcionario[indice].endereco);
+
+// 	printf("Digite o código da UF do funcionário: ");
+// 	scanf(" %s",&funcionario[indice].uf);
+
+// 	funcionario[0].indice++;
+// }
