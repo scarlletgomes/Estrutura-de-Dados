@@ -43,6 +43,9 @@ void cadastrarFuncionario(Funcionario *funcionarios, int *numFuncionarios)
 	printf("Digite a UF do Funcionário: ");
 	scanf("%s", &funcionarios[*numFuncionarios].uf);
 
+	printf("Digite o Depto. do Funcionário: ");
+	scanf("%s", &funcionarios[*numFuncionarios].funcao);
+
 	(*numFuncionarios)++;
 }
 
@@ -83,6 +86,7 @@ void listarFuncionarios(Funcionario funcionarios[], int numFuncionarios)
 			printf("Telefone: %d\n", funcionarios[i].telefone);
 			printf("Endereco: %s\n", funcionarios[i].endereco);
 			printf("UF: %s\n", funcionarios[i].uf);
+			printf("Depto: %s", funcionarios[i].funcao);
 		}
 	}
 }
@@ -133,7 +137,7 @@ int buscarFuncionario(Funcionario funcionarios[], int numFuncionarios, char nome
 {
 	for (int i = 0; i < numFuncionarios; i++)
 	{
-		if (strcmp(funcionarios[i].nome, nomeVendedor)==0)
+		if (strcmp(funcionarios[i].nome, nomeVendedor) == 0)
 		{
 			return i;
 		}
@@ -141,8 +145,77 @@ int buscarFuncionario(Funcionario funcionarios[], int numFuncionarios, char nome
 	return -1;
 }
 
+void ordenarClientesPorNome(Cliente clientes[], int numClientes){
+	for (int i = 0; i < numClientes - 1; i++) {
+        int indiceMenor = i;
+        for (int j = i + 1; j < numClientes; j++) {
+            if (strcmp(clientes[j].nome, clientes[indiceMenor].nome) < 0) {
+                indiceMenor = j;
+            }
+        }
+      
+        if (indiceMenor != i) {
+            Cliente temp = clientes[i];
+            clientes[i] = clientes[indiceMenor];
+            clientes[indiceMenor] = temp;
+        }
+    }
+}
+
+float retornaImpostoUF(char uf[3])
+{
+	float imposto = 0;
+	if (strcmp(uf, "BA"))
+	{
+		imposto = 0.19;
+	}
+	else if (strcmp(uf, "RJ"))
+	{
+		imposto = 0.2;
+	}
+	else if (strcmp(uf, "SP"))
+	{
+		imposto = 0.17;
+	}
+	else if (strcmp(uf, "DF"))
+	{
+		imposto = 0.18;
+	}
+	else
+	{
+		printf("UF invalida\n\n");
+	}
+	return imposto;
+}
+
+float calculaImposto(Cliente cliente, float valorVenda)
+{
+	if (strcmp(cliente.uf, "DF") == 0)
+	{
+		valorVenda = valorVenda * 1.18;
+	}
+	else if (strcmp(cliente.uf, "RJ"))
+	{
+		valorVenda = valorVenda * 1.2;
+	}
+	else if (strcmp(cliente.uf, "BA"))
+	{
+		valorVenda = valorVenda * 1.19;
+	}
+	else if (strcmp(cliente.uf, "SP"))
+	{
+		valorVenda = valorVenda * 1.17;
+	}
+	else
+	{
+		printf("UF nao encontrada\n");
+	}
+
+	return valorVenda;
+}
+
 void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
-				   Produto produtos[], struct Venda vendas[], int *numVendas,
+				   Produto produtos[], struct Venda vendas[], int numVendas,
 				   int numClientes, int numFuncionarios, int numProdutos)
 {
 
@@ -160,6 +233,9 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 		return;
 	}
 
+	strcpy(novaVenda.nomeCliente, clientes[indiceCliente].nome);
+	strcpy(novaVenda.uf, clientes[indiceCliente].uf);
+
 	printf("\nNome do Vendedor: ");
 	char nomeVendedor[50];
 	scanf("%s", nomeVendedor);
@@ -172,6 +248,8 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 		return;
 	}
 
+	strcpy(novaVenda.nomeVendedor, funcionarios[indiceFuncionario].nome);
+
 	printf("Digite o numero de produtos na venda: \n");
 	scanf("%d", &novaVenda.numProdutos);
 
@@ -179,53 +257,171 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 	listarProdutos(produtos, numProdutos);
 
 	printf("Digite os IDs dos produtos que foram vendidos: \n");
-	for(int i = 0; i < novaVenda.numProdutos; i++){
+	for (int i = 0; i < novaVenda.numProdutos; i++)
+	{
 		printf("Produto %d ID: ", i + 1);
-        scanf("%d", &novaVenda.produtos[i].id);
+		scanf("%d", &novaVenda.produtos[i].id);
 
-		if (novaVenda.produtos[i].id < 1 || novaVenda.produtos[i].id > numProdutos) {
-            printf("ID do produto inválido. A venda será cancelada.\n");
-            return;
-        }
+		if (novaVenda.produtos[i].id < 1 || novaVenda.produtos[i].id > numProdutos)
+		{
+			printf("ID do produto inválido. A venda será cancelada.\n");
+			return;
+		}
 
-		 strcpy(novaVenda.produtos[i].titulo, produtos[novaVenda.produtos[i].id - 1].titulo);
-        novaVenda.produtos[i].preco = produtos[novaVenda.produtos[i].id - 1].preco;
-        strcpy(novaVenda.produtos[i].tipo, produtos[novaVenda.produtos[i].id - 1].tipo);
+		strcpy(novaVenda.produtos[i].titulo, produtos[novaVenda.produtos[i].id - 1].titulo);
+		novaVenda.produtos[i].preco = produtos[novaVenda.produtos[i].id - 1].preco;
+		strcpy(novaVenda.produtos[i].tipo, produtos[novaVenda.produtos[i].id - 1].tipo);
 	}
 
-	
+	novaVenda.valorTotal = 0.0;
+	for (int i = 0; i < novaVenda.numProdutos; i++)
+	{
+		novaVenda.valorTotal += novaVenda.produtos[i].preco;
+	}
 
-		
+	printf("Valor da venda sem impostos: %f\n", novaVenda.valorTotal);
 
-		novaVenda.valorTotal = 0.0;
-    for (int i = 0; i < novaVenda.numProdutos; i++) {
-        novaVenda.valorTotal += novaVenda.produtos[i].preco;
-    }
+	novaVenda.valorTotal = calculaImposto(clientes[indiceCliente], novaVenda.valorTotal);
 
-	printf("Digite a data da venda (dia mes ano): ");
-    scanf("%d %d %d", &novaVenda.dia, &novaVenda.mes, &novaVenda.ano);
+	printf("Valor da venda com impostos para o estado de %s: %f\n", clientes[indiceCliente].uf, novaVenda.valorTotal);
 
-	vendas[*numVendas] = novaVenda;
-    (*numVendas)++;
+	printf("Digite a dia da venda: ");
+	scanf("%d", &novaVenda.dia);
+
+	printf("Digite o mes da venda: ");
+	scanf("%d", &novaVenda.mes);
+
+	printf("Digite a ano da venda: ");
+	scanf("%d", &novaVenda.ano);
+
+	novaVenda.imposto = retornaImpostoUF(clientes[indiceCliente].uf);
+	vendas[numVendas] = novaVenda;
+	(numVendas)++;
 
 	printf("\nDetalhes da Venda:\n");
-    printf("Cliente: %s\n", novaVenda.nomeCliente);
-    printf("Vendedor: %s\n", novaVenda.nomeVendedor);
-    printf("Produtos:\n");
-    for (int i = 0; i < novaVenda.numProdutos; i++) {
-        printf("  Produto %d: %s, Preço: %.2f\n", novaVenda.produtos[i].id, novaVenda.produtos[i].titulo, novaVenda.produtos[i].preco);
-    }
-    printf("Valor Total: %.2f\n", novaVenda.valorTotal);
-    printf("Data da Venda: %d/%d/%d\n", novaVenda.dia, novaVenda.mes, novaVenda.ano);
+	printf("Cliente: %s\n", novaVenda.nomeCliente);
+	printf("Vendedor: %s\n", novaVenda.nomeVendedor);
+	printf("UF: %s\n", novaVenda.uf);
+	printf("Produtos:\n");
+	for (int i = 0; i < novaVenda.numProdutos; i++)
+	{
+		printf("  Produto %d: %s, Preço: %.2f\n", novaVenda.produtos[i].id, novaVenda.produtos[i].titulo, novaVenda.produtos[i].preco);
+	}
+	printf("Valor Total: %.2f\n", novaVenda.valorTotal);
+	printf("Valor imposto: %f Porcento\n", (novaVenda.imposto*100));
+	printf("Data da Venda: %d/%d/%d\n", novaVenda.dia, novaVenda.mes, novaVenda.ano);
+}
 
-    
+void listarVendas(struct Venda vendas[], int numVendas)
+{
+	printf("\n=== Lista de Vendas ===\n");
+	for (int i = 0; i < numVendas; i++)
+	{
+		printf("Venda %d:\n", i + 1);
+		printf("Cliente: %s\n", vendas[i].nomeCliente);
+		printf("Vendedor: %s\n", vendas[i].nomeVendedor);
+		printf("Produtos:\n");
+		for (int j = 0; j < vendas[i].numProdutos; j++)
+		{
+			printf("  Produto %d: %s, Preço: %.2f\n", vendas[i].produtos[j].id, vendas[i].produtos[j].titulo, vendas[i].produtos[j].preco);
+		}
+		printf("Valor Total: %.2f\n", vendas[i].valorTotal);
+		printf("Valor Imposto: %f\n", vendas[i].imposto*100);
+		
+		printf("Data da Venda: %d/%d/%d\n", vendas[i].dia, vendas[i].mes, vendas[i].ano);
+		printf("\n");
+	}
+}
+
+void listarClientesPorUF(Cliente clientes[], int numClientes, char estado[])
+{
+	printf("\n=== Clientes do Estado %s ===\n", estado);
+	for (int i = 0; i < numClientes; i++)
+	{
+		if (strcmp(clientes[i].uf, estado) == 0)
+		{
+			printf("Cliente %d:\n", i + 1);
+			printf("Nome: %s\n", clientes[i].nome);
+			printf("Idade: %d\n", clientes[i].idade);
+			printf("Email: %s\n", clientes[i].email);
+			printf("Telefone: %d\n", clientes[i].telefone);
+			printf("Endereço: %s\n", clientes[i].endereco);
+			printf("UF: %s\n", clientes[i].uf);
+			printf("\n");
+		}
+	}
+}
+
+void mostrarEstadoComVendaMaisCara(struct Venda vendas[], int numVendas)
+{
+	float valor = 0;
+	char uf[3];
+
+	for (int i = 0; i < numVendas; i++)
+	{
+		if (vendas[i].valorTotal > valor)
+		{
+			valor = vendas[i].valorTotal;
+			strcpy(uf, vendas[i].uf);
+		}
+	}
+
+	printf("A venda de maior valor foi de R$%f e foi realizada na UF de %s\n", valor, uf);
+}
+
+void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
+{
+
+	printf("Revista\n");
+	for (int i = 0; i < numFuncionarios; i++)
+	{
+		if (strcmp(funcionarios[i].funcao, "Revista") == 0)
+		{
+			printf("Nome: %s\n", funcionarios[i].nome);
+		}
+	}
+	printf("Midia\n");
+	for (int i = 0; i < numFuncionarios; i++)
+	{
+		if (strcmp(funcionarios[i].funcao, "Midia") == 0)
+		{
+			printf("Nome: %s\n", funcionarios[i].nome);
+		}
+	}
+
+	printf("Papelaria\n");
+	for (int i = 0; i < numFuncionarios; i++)
+	{
+		if (strcmp(funcionarios[i].funcao, "Papelaria") == 0)
+		{
+			printf("Nome: %s\n", funcionarios[i].nome);
+		}
+	}
+
+	printf("Livro\n");
+	for (int i = 0; i < numFuncionarios; i++)
+	{
+		if (strcmp(funcionarios[i].funcao, "Livro") == 0)
+		{
+			printf("Nome: %s\n", funcionarios[i].nome);
+		}
+	}
+
+	printf("Videogame\n");
+	for (int i = 0; i < numFuncionarios; i++)
+	{
+		if (strcmp(funcionarios[i].funcao, "Videogame") == 0)
+		{
+			printf("Nome: %s\n", funcionarios[i].nome);
+		}
+	}
 }
 
 void listarClientesUF(Cliente clientes[], int numClientes)
 {
 	int count = 0, encontrados = 0;
 	char busca[3];
-	printf("Digite a sigla da UF: ");
+	printf("Digite a sigla da UF (DF, BA, RJ ou SP): ");
 	scanf("%s", &busca);
 	system("cls");
 	for (count = 0; count < numClientes; count++)
@@ -240,139 +436,64 @@ void listarClientesUF(Cliente clientes[], int numClientes)
 			printf("E-mail: %s\n", clientes[count].email);
 			printf("Endereco: %s\n", clientes[count].endereco);
 			printf("UF: %s\n", clientes[count].uf);
-			printf("\n\n");
 		}
 	}
 	if (encontrados <= 0)
 	{
 		printf("Nenhum cliente encontrado!");
 	}
-
 }
 
-/*void listarPrestadores() {
-	int i = 0;
-	printf("\nTodos os prestadores: \n");
+void ordenarVendasPorValorTotal(struct Venda vendas[], int numVendas){
+	for(int i = 0; i < numVendas -1; i++){
+		int indiceMaior = i;
+		for(int j = i + 1; j < numVendas; j++){
+			if(vendas[j].valorTotal < vendas[indiceMaior].valorTotal){
+				indiceMaior = j;
+			}
+		}
 
-	while (funcionario[i].nome != '\0' && i < 50) {
-		printf("Nome: %s Email: %s Telefone: %d Endereco: %s UF: %s\n",
-			   funcionario[i].nome, funcionario[i].email, funcionario[i].telefone,
-			   funcionario[i].endereco, funcionario[i].uf);
-		i++;
-	}
-}
-
-
-void listarClientes(){
-	int i = 0;
-	while (cliente[i].nome[0] != '\0' && i < 50) {
-		printf("\nTodos os clientes: \n");
-		printf("Nome: %s Idade: %d Email: %s Telefone: %d Endereco: %s UF: %s\n",
-		cliente[i].nome, cliente[i].idade, cliente[i].email, cliente[i].telefone,
-		cliente[i].endereco, cliente[i].uf);
-		i++;
-	}
-}
-
-void listarLivros(){
-	int i = 0;
-	while (produto[i].titulo[0] != '\0' && i < 50){
-		printf("\nTodos os livros: \n");
-		printf("Titulo: %s Editora: %s Genero: %s classificacao: %d Autor: %s\n",
-		produto[i].titulo, produto[i].editora, produto[i].genero, produto[i].classificacao, produto[i].autor);
-
-		i++;
-	}
-
-}
-
-
-
-void calculaImposto(Produto p){
-	char aliquota1[7][2] = {"RS", "SC", "SP", "ES", "GO", "MT", "RO"};
-
-	int i;
-	for(i = 0; i < 7; i++){
-		if(strcmp(aliquota1[i], p.uf) == 0){
-			p.imposto = 1.17;
+		if(indiceMaior != i){
+			struct Venda temp = vendas[i];
+			vendas[i] = vendas[indiceMaior];
+			vendas[indiceMaior] = temp;
 		}
 	}
-}
 
-void calculaValorVenda(Produto p){
-
-	calculaImposto(p);
-	p.valorVenda = p.imposto * p.valorBase;
-
-
-} */
-
-/*
-
-
-void listarPrestadores() {
-	int i = 0;
-	printf("\nTodos os prestadores: \n");
-
-	while (funcionario[i].nome != '\0' && i < 50) {
-		printf("Nome: %s Email: %s Telefone: %d Endereco: %s UF: %s\n",
-			   Prestador[i].nome, Prestador[i].email, Prestador[i].telefone,
-			   Prestador[i].endereco, Prestador[i].uf);
-		i++;
-	}
-}
-
-
-void listarClientes(){
-	int i = 0;
-	while (Cliente[i].nome[0] != '\0' && i < 50) {
-		printf("\nTodos os clientes: \n");
-		printf("Nome: %s Idade: %d Email: %s Telefone: %d Endereco: %s UF: %s\n",
-		Cliente[i].nome, Cliente[i].idade, Cliente[i].email, Cliente[i].telefone,
-		Cliente[i].endereco, Cliente[i].uf);
-		i++;
-	}
-}
-
-void listarLivros(){
-	int i = 0;
-	while (Livro[i].titulo[0] != '\0' && i < 50){
-		printf("\nTodos os livros: \n");
-		printf("Titulo: %s Editora: %s Genero: %s classificacao: %d Autor: %s\n",
-		Livro[i].titulo, Livro[i].editora, Livro[i].genero, Livro[i].classificacao, Livro[i].autor);
-
-		i++;
-	}
-
-}
-
-
-void listarClientesPorEstado(){
-	int i, resp;
-
-	printf("\nInforme a UF que deseja para ter a lista de clientes\n\n");
-	listarEstados();
-	printf("Resposta: ");
-	scanf("%d", &resp);
-
+	for(int k = 0; k < numVendas; k++){
+		printf("%d Produto: %s \nNome do cliente: ex \nVendedor: %s \nValor: R$ %.2f\nData%d/%d/%d\nUF: ex\n\n",k+1, vendas[k].nomeCliente, vendas[k].nomeVendedor, vendas[k].valorTotal, vendas[k].dia, vendas[k].mes, vendas[k].ano);
 	
-}
-void calculaImposto(Produto p){
-	char aliquota1[7][2] = {"RS", "SC", "SP", "ES", "GO", "MT", "RO"};
-
-	int i;
-	for(i = 0; i < 7; i++){
-		if(strcmp(aliquota1[i], p.uf) == 0){
-			p.imposto = 1.17;
-		}
 	}
 }
+void listarServ_valorCresc(struct Venda vendas[], int numVendas)
+{
+	int e, i, auxI;
+	float auxF;
 
-void calculaValorVenda(Produto p){
+	struct Venda temp;
 
-	calculaImposto(p);
-	p.valorVenda = p.imposto * p.valorBase;
+	for (e = 0; e < numVendas; e++)
+	{
+		for (i = 0; i < numVendas; i++)
+		{
+			if (vendas[i].valorTotal > vendas[i + 1].valorTotal)
+			{
+				temp = vendas[i];
+				vendas[i]=vendas[i+1];
+				vendas[i+1]=temp;
+//temp[e].valorTotal=vendas[e].valorTotal;
+//vendas[e].valorTotal=vendas[e+1].valorTotal;
+//vendas[e+1].valorTotal=temp[e].valorTotal;
 
-
+//tempp[e].titulo
+				//auxF = vendas[i].valorTotal;
+				//vendas[i].valorTotal = vendas[i + 1].valorTotal;
+				//vendas[i + 1].valorTotal = auxF;
+			}
+		}
+	}
+	printf("VENDAS MAIS CARAS: \n\n");
+	for(e=0;e<numVendas;e++){
+printf("%d Produto: %s \nNome do cliente: ex \nVendedor: %s \nValor: R$ %.2f\nData%d/%d/%d\nUF: ex\n\n",e+1, vendas[e].nomeCliente, vendas[e].nomeVendedor, vendas[e].valorTotal, vendas[e].dia, vendas[e].mes, vendas[e].ano);
+	}
 }
-*/

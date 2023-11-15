@@ -9,7 +9,7 @@ typedef struct  {
 	int telefone;
 	char endereco[100];
 	char uf[3];
-	int indice;
+	char funcao[20];
 } Funcionario;
 
 typedef struct {
@@ -38,24 +38,8 @@ struct Venda {
 	Produto produtos[10];
 	int numProdutos;
 	float valorTotal;
-};
+	char uf[3];
+	};
+
 
 #endif
-// void cadastroFunc(){
-// 	printf("Digite o nome do funcionário: ");
-// 	scanf(" %[^\n]s",&funcionario[indice].nome);
-
-// 	printf("Digite o email do funcionário: ");
-// 	scanf(" %s",&funcionario[indice].email);
-
-// 	printf("Digite o telefone do funcionário: ");
-// 	scanf("%d",&funcionario[indice].telefone);
-
-// 	printf("Digite o endereço do funcionário: ");
-// 	scanf(" %[^\n]s",&funcionario[indice].endereco);
-
-// 	printf("Digite o código da UF do funcionário: ");
-// 	scanf(" %s",&funcionario[indice].uf);
-
-// 	funcionario[0].indice++;
-// }
