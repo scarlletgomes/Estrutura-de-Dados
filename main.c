@@ -26,51 +26,6 @@ Listar todos os clientes em ordem crescente de nome. */
 
 int main(void) {
 
-	int i;
-
-	printf ("Cadastro de prestador: \n");
-	printf("Digite o nome do prestador: ");
-	fflush(stdin);
-	fgets(prestador[i].nome, 40, stdin); 
-	
-	printf("Digite o e-mail do prestador: ");
-	fflush(stdin);
-	fgets(prestador[i].email, 40, stdin); 
-	
-	printf("Digite o telefone do prestador: ");
-	scanf("%d", &prestador[i].telefone);
-
-	printf("Digite o endereco do prestador: ");
-	fflush(stdin);
-	fgets(prestador[i].endereco, 100, stdin); 
-	
-	printf("Digite a UF do prestador: ");
-	fflush(stdin);
-	fgets(prestador[i].uf, 3, stdin); 
-		
-	printf ("Cadastro de Cliente: \n");
-	printf("Digite o nome do cliente: ");
-	fflush(stdin);
-	fgets(cliente[i].nome, 40, stdin); 
-	
-	printf("Digite a idade do cliente: ");
-	scanf("%d", &cliente[i].idade);
-
-	
-	printf("Digite o e-mail do cliente: ");
-	fflush(stdin);
-	fgets(cliente[i].email, 40, stdin); 
-	
-	printf("Digite o telefone do cliente: ");
-	scanf("%d", &cliente[i].telefone);
-
-	printf("Digite o endereco do cliente: ");
-	fflush(stdin);
-	fgets(cliente[i].endereco, 100, stdin); 
-	
-	printf("Digite a UF do cliente: ");
-	fflush(stdin);
-	fgets(cliente[i].uf, 3, stdin); 
 	
 	
 	
