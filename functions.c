@@ -28,22 +28,22 @@ void cadastrarCliente(Cliente *clientes, int *numClientes)
 
 void cadastrarFuncionario(Funcionario *funcionarios, int *numFuncionarios)
 {
-	printf("Digite o Nome do Funcionário: ");
+	printf("Digite o Nome do Funcionário: \n");
 	scanf("%s", &funcionarios[*numFuncionarios].nome);
 
-	printf("Digite o Telefone do Funcionário: ");
+	printf("Digite o Telefone do Funcionário: \n");
 	scanf("%d", &funcionarios[*numFuncionarios].telefone);
 
-	printf("Digite o Email do Funcionário: ");
+	printf("Digite o Email do Funcionário: \n");
 	scanf("%s", &funcionarios[*numFuncionarios].email);
 
-	printf("Digite o Endereco do Funcionário: ");
+	printf("Digite o Endereco do Funcionário: \n");
 	scanf("%s", &funcionarios[*numFuncionarios].endereco);
 
-	printf("Digite a UF do Funcionário: ");
+	printf("Digite a UF do Funcionário: \n");
 	scanf("%s", &funcionarios[*numFuncionarios].uf);
 
-	printf("Digite o Depto. do Funcionário: ");
+	printf("Digite o Depto. do Funcionário: \n");
 	scanf("%s", &funcionarios[*numFuncionarios].funcao);
 
 	(*numFuncionarios)++;
@@ -160,6 +160,12 @@ void ordenarClientesPorNome(Cliente clientes[], int numClientes){
             clientes[indiceMenor] = temp;
         }
     }
+
+	printf("\n=== CLIENTES ORDENADOS DE FORMA ASCESNTE ALFABETICA ===\n\n");
+	for(int k =0; k < numClientes; k++){
+		printf("\nNome: %s   E-mail: %s   UF: %s\n", clientes[k].nome, clientes[k].email, clientes[k].uf);
+	}
+	printf("\n\n");
 }
 
 float retornaImpostoUF(char uf[3])
@@ -218,7 +224,7 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 				   Produto produtos[], struct Venda vendas[], int numVendas,
 				   int numClientes, int numFuncionarios, int numProdutos)
 {
-
+	printf("\n=== PAINEL DE REALIZACAO DE VENDAS ===\n");
 	struct Venda novaVenda;
 
 	printf("Digite o nome do Cliente ");
@@ -298,7 +304,7 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 	vendas[numVendas] = novaVenda;
 	(numVendas)++;
 
-	printf("\nDetalhes da Venda:\n");
+	printf("\n=== DETALHE DA VENDA ===\n");
 	printf("Cliente: %s\n", novaVenda.nomeCliente);
 	printf("Vendedor: %s\n", novaVenda.nomeVendedor);
 	printf("UF: %s\n", novaVenda.uf);
@@ -314,7 +320,7 @@ void realizarVenda(Cliente clientes[], Funcionario funcionarios[],
 
 void listarVendas(struct Venda vendas[], int numVendas)
 {
-	printf("\n=== Lista de Vendas ===\n");
+	printf("\n=== LISTA DE VENDA ===\n");
 	for (int i = 0; i < numVendas; i++)
 	{
 		printf("Venda %d:\n", i + 1);
@@ -335,7 +341,7 @@ void listarVendas(struct Venda vendas[], int numVendas)
 
 void listarClientesPorUF(Cliente clientes[], int numClientes, char estado[])
 {
-	printf("\n=== Clientes do Estado %s ===\n", estado);
+	printf("\n=== CLIENTES DO ESTADO %s ===\n", estado);
 	for (int i = 0; i < numClientes; i++)
 	{
 		if (strcmp(clientes[i].uf, estado) == 0)
@@ -365,82 +371,56 @@ void mostrarEstadoComVendaMaisCara(struct Venda vendas[], int numVendas)
 			strcpy(uf, vendas[i].uf);
 		}
 	}
-
-	printf("A venda de maior valor foi de R$%f e foi realizada na UF de %s\n", valor, uf);
+	printf("=== VENDA DE MAIOR VALOR ===\n");
+	printf("UF: %s\n", uf);
+	printf("Valor Total da Venda: %.2f\n", valor);
 }
 
 void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 {
 
-	printf("Revista\n");
+	printf("DEPTO DE REVISTAS\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Revista") == 0)
 		{
-			printf("Nome: %s\n", funcionarios[i].nome);
+			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
 	}
-	printf("Midia\n");
+	printf("DEPTO DE MIDIA\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Midia") == 0)
 		{
-			printf("Nome: %s\n", funcionarios[i].nome);
+			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
 	}
 
-	printf("Papelaria\n");
+	printf("DEPTO DE PAPELARIA\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Papelaria") == 0)
 		{
-			printf("Nome: %s\n", funcionarios[i].nome);
+			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
 	}
 
-	printf("Livro\n");
+	printf("DEPTO DE LIVROS\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Livro") == 0)
 		{
-			printf("Nome: %s\n", funcionarios[i].nome);
+			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
 	}
 
-	printf("Videogame\n");
+	printf("DEPTO DE VIDEOGAMES\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Videogame") == 0)
 		{
-			printf("Nome: %s\n", funcionarios[i].nome);
+			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
-	}
-}
-
-void listarClientesUF(Cliente clientes[], int numClientes)
-{
-	int count = 0, encontrados = 0;
-	char busca[3];
-	printf("Digite a sigla da UF (DF, BA, RJ ou SP): ");
-	scanf("%s", &busca);
-	system("cls");
-	for (count = 0; count < numClientes; count++)
-	{
-		if (strcmp(busca, clientes[count].uf) == 0)
-		{
-			encontrados++;
-			printf("Cliente %d:\n", count + 1);
-			printf("Nome: %s\n", clientes[count].nome);
-			printf("Idade: %d\n", clientes[count].idade);
-			printf("telefone: %d\n", clientes[count].telefone);
-			printf("E-mail: %s\n", clientes[count].email);
-			printf("Endereco: %s\n", clientes[count].endereco);
-			printf("UF: %s\n", clientes[count].uf);
-		}
-	}
-	if (encontrados <= 0)
-	{
-		printf("Nenhum cliente encontrado!");
 	}
 }
 
@@ -460,40 +440,9 @@ void ordenarVendasPorValorTotal(struct Venda vendas[], int numVendas){
 		}
 	}
 
+	printf("=== VENDAS ORDENADAS DE FORMA ASCENDENTE PELO VALOR TOTAL ===\n");
 	for(int k = 0; k < numVendas; k++){
-		printf("%d Produto: %s \nNome do cliente: ex \nVendedor: %s \nValor: R$ %.2f\nData%d/%d/%d\nUF: ex\n\n",k+1, vendas[k].nomeCliente, vendas[k].nomeVendedor, vendas[k].valorTotal, vendas[k].dia, vendas[k].mes, vendas[k].ano);
+		printf("\nProduto %d: \nNome do cliente: %s \nVendedor: %s \nValor: R$ %.2f\nData%d/%d/%d\nImposto: %.2f Porcento\nUF: %s\n\n",k+1, vendas[k].nomeCliente, vendas[k].nomeVendedor, vendas[k].valorTotal, vendas[k].dia, vendas[k].mes, vendas[k].ano, (vendas[k].imposto*100), vendas[k].uf);
 	
-	}
-}
-void listarServ_valorCresc(struct Venda vendas[], int numVendas)
-{
-	int e, i, auxI;
-	float auxF;
-
-	struct Venda temp;
-
-	for (e = 0; e < numVendas; e++)
-	{
-		for (i = 0; i < numVendas; i++)
-		{
-			if (vendas[i].valorTotal > vendas[i + 1].valorTotal)
-			{
-				temp = vendas[i];
-				vendas[i]=vendas[i+1];
-				vendas[i+1]=temp;
-//temp[e].valorTotal=vendas[e].valorTotal;
-//vendas[e].valorTotal=vendas[e+1].valorTotal;
-//vendas[e+1].valorTotal=temp[e].valorTotal;
-
-//tempp[e].titulo
-				//auxF = vendas[i].valorTotal;
-				//vendas[i].valorTotal = vendas[i + 1].valorTotal;
-				//vendas[i + 1].valorTotal = auxF;
-			}
-		}
-	}
-	printf("VENDAS MAIS CARAS: \n\n");
-	for(e=0;e<numVendas;e++){
-printf("%d Produto: %s \nNome do cliente: ex \nVendedor: %s \nValor: R$ %.2f\nData%d/%d/%d\nUF: ex\n\n",e+1, vendas[e].nomeCliente, vendas[e].nomeVendedor, vendas[e].valorTotal, vendas[e].dia, vendas[e].mes, vendas[e].ano);
 	}
 }

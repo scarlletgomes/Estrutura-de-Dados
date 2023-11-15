@@ -6,29 +6,7 @@
 #include "structs.h"
 #include "functions.c"
 
-/*Repositorio para o projeto da disciplina de estrutura de dados
 
-Descricao do Projeto de Estrutura de Dados:
-
-Produto correlacionado a prestaco de um servico: Descricao, tipo de servico, consumidor, valor do servico, parametros utilizados para calcular o valor do servico,
-prestador do servico.
-
-Prestador do servico: Nome, endereco eletronico, e-mail, telefone, endereco, UF (Todas da Unidade Federativa).ok
-
-Consumidor: Nome, idade, e-mail, telefone, endereco, UF (Todas da Unidade Federativa)ok
-
-Servico: Detalhamento do servico, data do servico prestado e preco cobrado.ok
-
-Criar um menu que possibilite executar as seguintes operacoes:
-
-Listar todos os tipos de venda.ok listando todos os produtos 
-Listar todas as clientes.ok
-Listar todos os prestadores de venda.ok
-Listar os clientes de um determinado estado.ok
-Listar os prestadores venda de um determinado tipo.ok
-Apresentar o(s) estado(s) onde esta registrado o venda mais caro.ok
-Listar todos os venda em ordem crescente de valor.ok 
-Listar todos os clientes em ordem crescente de nome.ok */
 
 int main() {
 	setlocale(LC_ALL, "portuguese");
@@ -109,16 +87,16 @@ int main() {
     };
 
 	 vendas[numVendas++] = (struct Venda){
-        .nomeCliente = "Aline",
-        .dia = 10,
-        .mes = 11,
+        .nomeCliente = "Luisa",
+        .dia = 19,
+        .mes = 10,
         .ano = 2023,
-        .imposto = 0.18, 
+        .imposto = 0.2, 
         .nomeVendedor = "Ana",
-        .produtos = {{1, "Livro A", 29.99, "Livro"}, {2, "Revista B", 5.99, "Revista"}},
+        .produtos = {{1, "Livro A", 29.99, "Livro"}, {2, "Revista B", 5.99, "Revista"}, {17, "VideoGame O", 150.00, "Videogame"}},
         .numProdutos = 2,
-        .valorTotal = 70.45, 
-        .uf = "DF"
+        .valorTotal = 223.18, 
+        .uf = "RJ"
     };
 	
 
@@ -181,7 +159,7 @@ int main() {
 			// SUBMENU-LISTAGENS
 			while (contInt != 9)
 			{
-				printf("Escolha uma opcao: \n[1] Listar todos os tipos de produtos. \n[2] Listar todas as clientes. \n[3] Listar todos os prestadores de servico. \n[4] Listar os clientes de um determinado estado. \n[5] Listar os prestadores de servico de um determinado tipo. \n[6] Apresentar o(s) estado(s) onde estao os registrados os servicos mais caros. \n[7] Listar todos os servicos em ordem crescente de valor. \n[8] Listar todos os clientes em ordem crescente de nome.\n [9] Listas vendas \n[10] Sair.\n");
+				printf("Escolha uma opcao: \n[1] Listar todos os tipos de produtos.\n[2] Listar todas as clientes. \n[3] Listar todos os prestadores de servico. \n[4] Listar os clientes de um determinado estado. \n[5] Listar os prestadores de servico de um determinado tipo. \n[6] Apresentar o(s) estado(s) onde estao os registrados os servicos mais caros. \n[7] Listar todos os servicos em ordem crescente de valor. \n[8] Listar todos os clientes em ordem crescente de nome.\n[9] Listas vendas \n[10] Sair.\n");
 				scanf("%d", &contInt);
 				system("cls");
 				switch (contInt)
@@ -206,10 +184,9 @@ int main() {
 					break;
 				case 4:
                 printf("Digite o estado (DF, BA, RJ ou SP): ");
-                char estado[3];
-                scanf("%s", estado);
-                listarClientesPorUF(clientes, numClientes, estado);
-                
+                	char estado[3];
+                	scanf("%s", estado);
+                	listarClientesPorUF(clientes, numClientes, estado);
 					break;
 				case 5:
 					listarPrestadoresPorDepto(funcionarios, numFuncionarios);
@@ -219,13 +196,8 @@ int main() {
 					break;
 				case 7:
 					ordenarVendasPorValorTotal(vendas, numVendas);
-					// listarServ_valorCresc(vendas, numVendas);
-					// printf("\n\nAperte qualquer tecla para prosseguir!!\n\n");
-					// system("pause");
-					// system("cls");
 					break;
 				case 8:
-				 	printf("Clientes ordenados por nome.\n");
 					ordenarClientesPorNome(clientes, numClientes);             
 					break;
 				case 9:
