@@ -91,18 +91,24 @@ void listarFuncionarios(Funcionario funcionarios[], int numFuncionarios)
 	}
 }
 
-void cadastrarProduto(Produto produtos[], int *numProdutos)
+void cadastrarProduto(Produto produtos[], int* numProdutos)
 {
-	printf("Digite o Nome do Produto");
-	scanf("%s", &produtos[*numProdutos].titulo);
 
-	printf("Digite o Tipo do Produto");
-	scanf("%s", &produtos[*numProdutos].tipo);
 
-	printf("DIgite o Preco do Produto");
-	scanf("%f", &produtos[*numProdutos].preco);
+    printf("Digite o Nome do Produto\n");
+    scanf("%s", &produtos[*numProdutos].titulo);
+	fflush(stdin);
 
-	(*numProdutos++);
+    printf("Digite o Tipo do Produto\n");
+    scanf("%s", &produtos[*numProdutos].tipo);
+	fflush(stdin);
+
+    printf("Digite o Preço do Produto\n");
+    scanf("%f", &produtos[*numProdutos].preco);
+
+    produtos[*numProdutos].id = *numProdutos + 1;
+
+	(*numProdutos)++;
 }
 
 void listarProdutos(Produto produtos[], int numProdutos)
@@ -112,11 +118,12 @@ void listarProdutos(Produto produtos[], int numProdutos)
 	for (int i = 0; i < numProdutos; i++)
 	{
 
-		printf("Produto %d: \n", i + 1);
-		printf("Produto: %d \n", produtos[i].id);
+		printf("\nProduto %d: \n", i + 1);
+		printf("ID: %d \n", produtos[i].id);
 		printf("Produto: %s \n", produtos[i].titulo);
-		printf("Preco: %f \n", produtos[i].preco);
 		printf("Tipo: %s\n", produtos[i].tipo);
+		printf("Preco: %.2f \n", produtos[i].preco);
+		
 	}
 }
 

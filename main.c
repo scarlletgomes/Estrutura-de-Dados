@@ -21,6 +21,8 @@ int main() {
 	int numVendas = 0;
 	int i = 0, controlador = 0, contInt = 0, contAux=0;
 
+
+
 	produtos[numProdutos++] = (Produto){1, "Livro A", 29.99, "Livro"};
 	produtos[numProdutos++] = (Produto){2, "Revista B", 5.99, "Revista"};
 	produtos[numProdutos++] = (Produto){3, "Caneta C", 2.50, "Papelaria"};
@@ -125,20 +127,13 @@ int main() {
 				case 1:
 					cadastrarFuncionario(funcionarios, &numFuncionarios);
 					printf("\n\nCadastro efetuado com sucesso, aperte qualquer tecla para prosseguir: \n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 2:
 					cadastrarCliente(clientes, &numClientes);
 					printf("\n\nCadastro efetuado com sucesso, aperte qualquer tecla para prosseguir: \n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 3:
 					cadastrarProduto(produtos, &numProdutos);
-					printf("\n\nCadastro efetuado com sucesso, aperte qualquer tecla para prosseguir: \n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 4:
 					realizarVenda(clientes, funcionarios, produtos, vendas, numVendas, numClientes, numFuncionarios, numProdutos);
@@ -149,15 +144,13 @@ int main() {
 				default:
 
 					printf("Opcao invalida, aperte qualquer tecla para prosseguir\n\n");
-					system("pause");
-					system("cls");
 				}
 			}
 			contInt = 0;
 			break;
 		case 2:
 			// SUBMENU-LISTAGENS
-			while (contInt != 9)
+			while (contInt != 10)
 			{
 				printf("Escolha uma opcao: \n[1] Listar todos os tipos de produtos.\n[2] Listar todas as clientes. \n[3] Listar todos os prestadores de servico. \n[4] Listar os clientes de um determinado estado. \n[5] Listar os prestadores de servico de um determinado tipo. \n[6] Apresentar o(s) estado(s) onde estao os registrados os servicos mais caros. \n[7] Listar todos os servicos em ordem crescente de valor. \n[8] Listar todos os clientes em ordem crescente de nome.\n[9] Listas vendas \n[10] Sair.\n");
 				scanf("%d", &contInt);
@@ -167,20 +160,14 @@ int main() {
 				case 1:
 					listarProdutos(produtos, numProdutos);
 					printf("\n\nAperte qualquer tecla para prosseguir!!\n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 2:
 					listarClientes(clientes, numClientes);
 					printf("\n\nAperte qualquer tecla para prosseguir!!\n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 3:
 					listarFuncionarios(funcionarios, numFuncionarios);
 					printf("\n\nAperte qualquer tecla para prosseguir!!\n\n");
-					system("pause");
-					system("cls");
 					break;
 				case 4:
                 printf("Digite o estado (DF, BA, RJ ou SP): ");
@@ -207,8 +194,6 @@ int main() {
 					break;
 				default:
 					printf("Opcao invalida, aperte qualquer tecla para prosseguir\n\n");
-					system("pause");
-					system("cls");
 				}
 			}
 			contInt = 0;
