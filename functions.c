@@ -19,7 +19,7 @@ void cadastrarCliente(Cliente *clientes, int *numClientes)
 
 	printf("Digite o Endereco do Cliente: ");
 	scanf("%s", clientes[*numClientes].endereco);
-
+	fflush(stdin);
 	printf("Digite a UF do Cliente: ");
 	scanf("%s", clientes[*numClientes].uf);
 
@@ -59,7 +59,7 @@ void listarClientes(Cliente clientes[], int numClientes)
 	{
 		for (int i = 0; i < numClientes; i++)
 		{
-			printf("Cliente %d:\n", i + 1);
+			printf("\nCliente %d:\n", i + 1);
 			printf("Nome: %s\n", clientes[i].nome);
 			printf("Idade: %d\n", clientes[i].idade);
 			printf("telefone: %d\n", clientes[i].telefone);
@@ -80,13 +80,13 @@ void listarFuncionarios(Funcionario funcionarios[], int numFuncionarios)
 	{
 		for (int i = 0; i < numFuncionarios; i++)
 		{
-			printf("Funcionario %d:\n", i + 1);
+			printf("\nFuncionario %d:\n", i + 1);
 			printf("Nome: %s\n", funcionarios[i].nome);
 			printf("Email: %s\n", funcionarios[i].email);
 			printf("Telefone: %d\n", funcionarios[i].telefone);
 			printf("Endereco: %s\n", funcionarios[i].endereco);
 			printf("UF: %s\n", funcionarios[i].uf);
-			printf("Depto: %s", funcionarios[i].funcao);
+			printf("Depto: %s\n", funcionarios[i].funcao);
 		}
 	}
 }
@@ -380,13 +380,13 @@ void mostrarEstadoComVendaMaisCara(struct Venda vendas[], int numVendas)
 	}
 	printf("=== VENDA DE MAIOR VALOR ===\n");
 	printf("UF: %s\n", uf);
-	printf("Valor Total da Venda: %.2f\n", valor);
+	printf("Valor Total da Venda: %.2f\n\n", valor);
 }
 
 void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 {
 
-	printf("DEPTO DE REVISTAS\n");
+	printf("\nDEPTO DE REVISTAS\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Revista") == 0)
@@ -394,7 +394,7 @@ void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 			printf("Nome: %s   Departamento: %s\n", funcionarios[i].nome, funcionarios[i].funcao);
 		}
 	}
-	printf("DEPTO DE MIDIA\n");
+	printf("\nDEPTO DE MIDIA\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Midia") == 0)
@@ -403,7 +403,7 @@ void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 		}
 	}
 
-	printf("DEPTO DE PAPELARIA\n");
+	printf("\nDEPTO DE PAPELARIA\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Papelaria") == 0)
@@ -412,7 +412,7 @@ void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 		}
 	}
 
-	printf("DEPTO DE LIVROS\n");
+	printf("\nDEPTO DE LIVROS\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Livro") == 0)
@@ -421,7 +421,7 @@ void listarPrestadoresPorDepto(Funcionario funcionarios[], int numFuncionarios)
 		}
 	}
 
-	printf("DEPTO DE VIDEOGAMES\n");
+	printf("\nDEPTO DE VIDEOGAMES\n");
 	for (int i = 0; i < numFuncionarios; i++)
 	{
 		if (strcmp(funcionarios[i].funcao, "Videogame") == 0)
